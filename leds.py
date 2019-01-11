@@ -1,6 +1,6 @@
 import time
 
-from neopixel import *
+import rpi_ws281x
 
 # LED strip configuration:
 LED_0_COUNT = 60  # Number of LED pixels.
@@ -10,7 +10,7 @@ LED_0_DMA = 10  # DMA channel to use for generating signal (Between 1 and 14)
 LED_0_BRIGHTNESS = 255  # Set to 0 for darkest and 255 for brightest
 LED_0_INVERT = False  # True to invert the signal (when using NPN transistor level shift)
 LED_0_CHANNEL = 0  # 0 or 1
-LED_0_STRIP = ws.SK6812_STRIP_GRBW
+LED_0_STRIP = ws.WS2812_STRIP
 
 LED_1_COUNT = 44  # Number of LED pixels.
 LED_1_PIN = 13  # GPIO pin connected to the pixels (must support PWM! GPIO 13 or 18 on RPi 3).
@@ -19,7 +19,7 @@ LED_1_DMA = 11  # DMA channel to use for generating signal (Between 1 and 14)
 LED_1_BRIGHTNESS = 255  # Set to 0 for darkest and 255 for brightest
 LED_1_INVERT = False  # True to invert the signal (when using NPN transistor level shift)
 LED_1_CHANNEL = 1  # 0 or 1
-LED_1_STRIP = ws.WS2811_STRIP_GRB
+LED_1_STRIP = ws.WS2812_STRIP
 
 initialized = False
 strip1 = None
