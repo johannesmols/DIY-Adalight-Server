@@ -47,6 +47,11 @@ def prepare(monitor, top, bottom, left, right, order, inverted):
     leds.update(monitor, colors)
 
 
+class Availability(Resource):
+    def get(self):
+        return 200
+
+
 # API endpoint to receive color data
 class Update(Resource):
     def post(self):
@@ -62,6 +67,7 @@ class Update(Resource):
         return jsonify(json_data)
 
 
+api.add_resource(Availability, '/')
 api.add_resource(Update, '/update')
 
 if __name__ == '__main__':
