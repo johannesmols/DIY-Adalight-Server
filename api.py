@@ -19,7 +19,6 @@ api = Api(app)
 parser = reqparse.RequestParser()
 parser.add_argument('task')
 
-
 # prepare data to be sent to the LED strips
 def prepare(monitor, top, bottom, left, right, order, inverted):
     colors = []

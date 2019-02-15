@@ -1,9 +1,9 @@
 import time
 
-import neopixel
+from neopixel import *
 
 # LED strip configuration:
-LED_0_COUNT = 60  # Number of LED pixels.
+LED_0_COUNT = 20  # Number of LED pixels.
 LED_0_PIN = 18  # GPIO pin connected to the pixels (must support PWM! GPIO 13 and 18 on RPi 3).
 LED_0_FREQ_HZ = 800000  # LED signal frequency in hertz (usually 800khz)
 LED_0_DMA = 10  # DMA channel to use for generating signal (Between 1 and 14)
@@ -12,7 +12,7 @@ LED_0_INVERT = False  # True to invert the signal (when using NPN transistor lev
 LED_0_CHANNEL = 0  # 0 or 1
 LED_0_STRIP = ws.WS2812_STRIP
 
-LED_1_COUNT = 44  # Number of LED pixels.
+LED_1_COUNT = 20  # Number of LED pixels.
 LED_1_PIN = 13  # GPIO pin connected to the pixels (must support PWM! GPIO 13 or 18 on RPi 3).
 LED_1_FREQ_HZ = 800000  # LED signal frequency in hertz (usually 800khz)
 LED_1_DMA = 11  # DMA channel to use for generating signal (Between 1 and 14)
@@ -51,7 +51,6 @@ def blackout(strip):
         strip.setPixelColor(i, Color(0, 0, 0))
         strip.show()
 
-
 def update(monitor, colors):
     global strip1, strip2
     if not initialized:
@@ -62,13 +61,13 @@ def update(monitor, colors):
                   'server configuration (received: ' + str(len(colors)) + ', expected: ' + str(LED_0_COUNT) + ')')
             return
         for i in range(strip1.numPixels()):
-            strip1.setPixelColor(i, colors[i])
-        strip1.show()
+            strip1.setPixelColor(i, Color(colors[i][0], colors[i][1], colors[i][2]))
+	    strip1.show()
     elif monitor == 1:
         if len(colors) != LED_1_COUNT:
             print('Request to monitor ' + str(monitor) + ' has unequal amounts of LEDs installed than described in the '
                   'server configuration (received: ' + str(len(colors)) + ', expected: ' + str(LED_1_COUNT) + ')')
             return
         for i in range(strip2.numPixels()):
-            strip2.setPixelColor(i, colors[i])
-        strip2.show()
+            strip2.setPixelColor(i, Color(colors[i][0], colors[i][1], colors[i][2]))
+            strip2.show()
